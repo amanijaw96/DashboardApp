@@ -1,0 +1,108 @@
+import React from "react";
+import CustomInput from "../../Components/CustomInput";
+import { credentials } from "../../assets/Constants";
+import "./Login.scss";
+import { authUser } from "../../Redux/actions/userActions";
+import { connect } from "react-redux";
+import Alert from "../../Components/Alert";
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    authUser: () => {
+      dispatch(authUser());
+    }
+  };
+};
+
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
+  // onForm Submit
+  handleFormSubmit = e => {
+    var isvalidate = document.getElementById("signIn-form").checkValidity();
+    e.preventDefault();
+    if (isvalidate) {
+      this.handleSignin();
+    }
+    document.getElementById("signIn-form").classList.add("was-validated");
+  };
+
+  // Handle SignIn
+  handleSignin = () => {
+    let ref = this;
+    if (
+      ref.state.email === credentials.email &&
+      ref.state.password === ref.state.password
+    ) {
+      ref.props.authUser();
+      ref.props.history.push("/dashboard");
+      Alert("success", "Signed in Successfully");
+    } else {
+      Alert("error", "Invalid credentials");
+    }
+  };
+
+  render() {
+    return (
+      <div className="LoginBox mt-md-5 mt-3 border border-light">
+        <form
+          id="signIn-form"
+          className="needs-validation text-center p-4"
+          noValidate
+        >
+          <p className="h4 mt-2">Sign in</p>
+          <CustomInput
+            type="text"
+            id="email"
+            placeholder="Email"
+            required
+            invalidmsg="Please provide an email"
+            onChange={e => {
+              this.setState({ email: e.target.value });
+            }}
+            value={this.state.email}
+          ></CustomInput>
+
+          <CustomInput
+            type="text"
+            id="password"
+            placeholder="Password"
+            type="password"
+            required
+            invalidmsg="Please provide a password"
+            onChange={e => {
+              this.setState({ password: e.target.value });
+            }}
+            value={this.state.password}
+          ></CustomInput>
+
+          <div className="form-row mt-3 justify-content-center ">
+            <button
+              className="btn btn-primary "
+              onClick={this.handleFormSubmit}
+              type="submit"
+            >
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
