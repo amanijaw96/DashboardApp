@@ -6,7 +6,17 @@ import "react-toastify/dist/ReactToastify.min.css";
 import Login from "./Containers/Login";
 import Dashboard from "./Containers/Dashboard";
 import { connect } from "react-redux";
+import Navbar from "./Components/Navbar";
 
+// layout
+const DefaultLayout = ({ children }) => (
+  <React.Fragment>
+    <Navbar />
+    {children}
+  </React.Fragment>
+);
+
+// Restricted Routes
 const AuthenticatedRoute = ({
   component: Component,
   loggedinstatus,
@@ -17,7 +27,9 @@ const AuthenticatedRoute = ({
     {...rest}
     render={props =>
       loggedinstatus === true ? (
-        <Component {...props} {...rest} />
+        <DefaultLayout>
+          <Component {...props} {...rest} />
+        </DefaultLayout>
       ) : (
         <Redirect to="/" />
       )
