@@ -1,6 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import { unauthUser } from "../../Redux/actions/userActions";
 
-export default class Navbar extends React.Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    unauthUser: () => {
+      dispatch(unauthUser());
+    }
+  };
+};
+
+class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +19,7 @@ export default class Navbar extends React.Component {
     };
   }
 
+  // open Navbar
   OpenNav = (e, id) => {
     let ref = this;
     if (ref.state[id]) {
@@ -20,6 +31,11 @@ export default class Navbar extends React.Component {
     }
   };
 
+  // Logout
+  Logout = () => {
+    let ref = this;
+    ref.props.unauthUser();
+  };
   render() {
     return (
       <>
@@ -57,8 +73,8 @@ export default class Navbar extends React.Component {
                 </a>
               </li>
               <li className="nav-item ">
-                <a className="nav-link" href="#">
-                  <i className="fas fa-sign-out-alt"></i>
+                <a className="nav-link" href="/">
+                  <i className="fas fa-sign-out-alt" onClick={this.Logout}></i>
                 </a>
               </li>
             </ul>
@@ -68,3 +84,8 @@ export default class Navbar extends React.Component {
     );
   }
 }
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Navbar);
