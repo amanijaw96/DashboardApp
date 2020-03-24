@@ -6,20 +6,19 @@ class CustomTable extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="card w-100">
         <MaterialTable
+          {...this.props}
           options={{
             headerStyle: {
               backgroundColor: rgba("#007bff", 0.6),
               color: "#FFF"
-            }
+            },
+            ...this.props.options
           }}
-          columns={this.props.columns}
-          data={this.props.data}
-          title={this.props.title}
-          {...this.props}
         />
       </div>
     );

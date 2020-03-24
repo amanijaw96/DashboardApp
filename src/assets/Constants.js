@@ -92,5 +92,12 @@ export const UserData = [
     Nationality: "Turkish",
     LastMonthBill: 6300,
     PhoneNumber: "+96136589631"
+  },
+  {
+    FirstName: "Mehmet3",
+    LastName: "Baran3",
+    Nationality: "Turkish",
+    LastMonthBill: 6300,
+    PhoneNumber: "+96136589631"
   }
 ];
