@@ -1,6 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { unauthUser } from "../../Redux/actions/userActions";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBFormInline,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBIcon
+} from "mdbreact";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -39,47 +54,42 @@ class Navbar extends React.Component {
   render() {
     return (
       <>
-        <nav className="navbar navbar-expand-lg navbar-dark primary-color">
+        <MDBNavbar className="navbar navbar-expand-lg navbar-dark primary-color">
           {/* Brand */}
-          <a className="navbar-brand" href="/dashboard">
-            Dashboard
-          </a>
+          <MDBNavbarBrand className="white-text">
+            <MDBNavLink className="white-text" to="/dashboard">
+              Dashboard
+            </MDBNavLink>
+          </MDBNavbarBrand>
 
           {/* Navbar Burger */}
-          <button
-            className="navbar-toggler"
+          <MDBNavbarToggler
             onClick={e => {
               this.OpenNav(e, "NavBar");
             }}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          />
           {/* Navbar */}
-          <div className={"collapse navbar-collapse"} id="NavBar">
+          <MDBCollapse id="NavBar" isOpen={this.state.NavBar} navbar>
             {/* Navbar left links */}
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="/users">
-                  Users
-                </a>
-              </li>
-            </ul>
+            <MDBNavbarNav left>
+              <MDBNavLink to="/users">Users</MDBNavLink>
+            </MDBNavbarNav>
 
             {/* Navbar right links */}
-            <ul className="navbar-nav ml-auto dropdown">
-              <li className="nav-item ">
-                <a className="nav-link" href="#">
-                  <i class="fas fa-user-alt"></i>
-                </a>
-              </li>
-              <li className="nav-item ">
-                <a className="nav-link" href="/">
-                  <i className="fas fa-sign-out-alt" onClick={this.Logout}></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+            <MDBNavbarNav right>
+              <MDBNavItem className="white-text mr-3">
+                <MDBNavLink to="/profile">
+                  <MDBIcon icon="user" />
+                </MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem className="white-text mr-3">
+                <MDBNavLink to="/">
+                  <MDBIcon icon="sign-out-alt" onClick={this.Logout} />
+                </MDBNavLink>
+              </MDBNavItem>
+            </MDBNavbarNav>
+          </MDBCollapse>
+        </MDBNavbar>
       </>
     );
   }
