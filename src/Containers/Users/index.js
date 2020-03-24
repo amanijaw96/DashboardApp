@@ -3,24 +3,8 @@ import CustomTable from "../../Components/Table";
 import CustomButton from "../../Components/CustomButton";
 import { connect } from "react-redux";
 import { updateUserData } from "../../Redux/actions/userDataActions";
-
-const Columns = [
-  { title: "First Name", field: "FirstName" },
-  { title: "Last Name", field: "LastName" },
-  { title: "Nationality", field: "Nationality" },
-  {
-    title: "Phone Number",
-    field: "PhoneNumber"
-  },
-  {
-    title: "Last Month Bill",
-    field: "LastMonthBill",
-    type: "numeric"
-  },
-  {
-    render: rowData => <CustomButton>{"view Details"}</CustomButton>
-  }
-];
+import Alert from "../../Components/Alert";
+import CustomModal from "../../Components/Modal";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -40,7 +24,9 @@ class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      visible: false,
+      UserInfo: undefined
     };
   }
 
@@ -56,6 +42,7 @@ class Users extends Component {
         this.setState({ data: [...this.state.data, newData] }, () => {
           resolve();
           this.props.updateUserData(this.state.data);
+          Alert("success", "Added Successfully");
         });
       }
       resolve();
@@ -77,6 +64,7 @@ class Users extends Component {
           },
           () => {
             resolve();
+            Alert("success", "Successfully updated");
             this.props.updateUserData(this.state.data);
           }
         );
@@ -99,6 +87,7 @@ class Users extends Component {
           },
           () => {
             resolve();
+            Alert("success", "Successfully deleted");
             this.props.updateUserData(this.state.data);
           }
         );
@@ -107,9 +96,53 @@ class Users extends Component {
     }, 1000);
   };
 
+  // Show User Details
+  ShowDetails = rowdata => {
+    let ref = this;
+    ref.setState({ visible: !ref.state.visible, UserInfo: rowdata });
+  };
+
   render() {
+    // Columns
+    const Columns = [
+      { title: "First Name", field: "FirstName" },
+      { title: "Last Name", field: "LastName" },
+      { title: "Nationality", field: "Nationality" },
+      {
+        title: "Phone Number",
+        field: "PhoneNumber"
+      },
+      {
+        title: "Last Month Bill",
+        field: "LastMonthBill",
+        type: "numeric"
+      },
+      {
+        title: "Last Month Billss",
+        field: "LastMonthBill",
+        type: "numeric",
+        hidden: true
+      },
+      {
+        render: rowData => (
+          <CustomButton onClick={() => this.ShowDetails(rowData)}>
+            {"view Details"}
+          </CustomButton>
+        )
+      }
+    ];
+
     return (
       <div className="row m-lg-5 m-3">
+        <CustomModal
+          title={"User Details"}
+          visible={this.state.visible}
+          toggle={() => this.ShowDetails(undefined)}
+          cancelText="Close"
+        >
+          <div>hi</div>
+        </CustomModal>
+
         <CustomTable
           options={{
             search: false
