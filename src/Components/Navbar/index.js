@@ -50,29 +50,16 @@ export default class Navbar extends React.Component {
             </ul>
 
             {/* Navbar right links */}
-            <ul className="navbar-nav">
-              <li className="nav-item dropdown">
-                <li
-                  className="nav-item"
-                  onClick={e => {
-                    this.OpenNav(e, "profileData");
-                  }}
-                >
-                  <a className="nav-link" href="#">
-                    <i className="fas fa-user"></i>
-                  </a>
-                </li>
-                <div
-                  id="profileData"
-                  className="dropdown-menu dropdown-menu-right dropdown-default"
-                >
-                  <a className="dropdown-item" href="#">
-                    view profile
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    logout
-                  </a>
-                </div>
+            <ul className="navbar-nav ml-auto dropdown">
+              <li className="nav-item ">
+                <a className="nav-link" href="#">
+                  <i class="fas fa-user-alt"></i>
+                </a>
+              </li>
+              <li className="nav-item ">
+                <a className="nav-link" href="#">
+                  <i className="fas fa-sign-out-alt"></i>
+                </a>
               </li>
             </ul>
           </div>

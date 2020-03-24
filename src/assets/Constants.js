@@ -10,6 +10,10 @@ export const UserActions = {
   "UNAUTHENTICATE-USER": "UNAUTHENTICATE-USER"
 };
 
+export const UserDataActions = {
+  UPDATE_USERS: "UPDATE_USERS"
+};
+
 export const BarChartData = {
   labels: ["27/2/2018", "27/3/2018", "27/4/2018"],
   datasets: [
@@ -73,3 +77,20 @@ export const LineChartData = {
     }
   ]
 };
+
+export const UserData = [
+  {
+    FirstName: "Mehmet",
+    LastName: "Baran",
+    Nationality: "Turkish",
+    LastMonthBill: 630,
+    PhoneNumber: "+96136589631"
+  },
+  {
+    FirstName: "Mehmet2",
+    LastName: "Baran2",
+    Nationality: "Turkish",
+    LastMonthBill: 6300,
+    PhoneNumber: "+96136589631"
+  }
+];
