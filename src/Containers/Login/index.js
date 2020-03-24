@@ -33,6 +33,7 @@ class Login extends React.Component {
   handleFormSubmit = e => {
     var isvalidate = document.getElementById("signIn-form").checkValidity();
     e.preventDefault();
+    console.log(isvalidate);
     if (isvalidate) {
       this.handleSignin();
     }
@@ -64,24 +65,24 @@ class Login extends React.Component {
         >
           <p className="h4 mt-2">Sign in</p>
           <CustomInput
-            type="text"
+            type="email"
             id="email"
-            placeholder="Email"
+            hint="Email"
             required
-            invalidmsg="Please provide an email"
             onChange={e => {
               this.setState({ email: e.target.value });
             }}
+            outline
             value={this.state.email}
           ></CustomInput>
 
           <CustomInput
             type="text"
             id="password"
-            placeholder="Password"
+            hint="Password"
             type="password"
             required
-            invalidmsg="Please provide a password"
+            outline
             onChange={e => {
               this.setState({ password: e.target.value });
             }}

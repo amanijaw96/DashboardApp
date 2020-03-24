@@ -1,4 +1,5 @@
 import React from "react";
+import { MDBInput } from "mdbreact";
 
 class CustomInput extends React.Component {
   constructor(props) {
@@ -7,18 +8,15 @@ class CustomInput extends React.Component {
   }
   render() {
     return (
-      <div className="form-row mt-3">
-        <label htmlFor={this.props.id}>{this.props.label}</label>
-        <input
-          className={
-            this.props.className
-              ? "form-control" + this.props.className
-              : "form-control"
-          }
-          {...this.props}
-        />
-        <div className="invalid-feedback">{this.props.invalidmsg}</div>
-      </div>
+      <MDBInput
+        label={this.props.label}
+        className={
+          this.props.className
+            ? "form-control" + this.props.className
+            : "form-control"
+        }
+        {...this.props}
+      />
     );
   }
 }
