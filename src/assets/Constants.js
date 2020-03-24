@@ -84,20 +84,29 @@ export const UserData = [
     LastName: "Baran",
     Nationality: "Turkish",
     LastMonthBill: 630,
-    PhoneNumber: "+96136589631"
+    PhoneNumber: "+96136589631",
+    Subscribed_services: 2,
+    Age: 20,
+    Address: "Istanbul"
   },
   {
     FirstName: "Mehmet2",
     LastName: "Baran2",
     Nationality: "Turkish",
     LastMonthBill: 6300,
-    PhoneNumber: "+96136589631"
+    PhoneNumber: "+96136589631",
+    Subscribed_services: 3,
+    Age: 50,
+    Address: "Cairo"
   },
   {
     FirstName: "Mehmet3",
     LastName: "Baran3",
     Nationality: "Turkish",
     LastMonthBill: 6300,
-    PhoneNumber: "+96136589631"
+    PhoneNumber: "+96136589631",
+    Subscribed_services: 10,
+    Age: 15,
+    Address: "Istanbul"
   }
 ];

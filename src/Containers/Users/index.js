@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { updateUserData } from "../../Redux/actions/userDataActions";
 import Alert from "../../Components/Alert";
 import CustomModal from "../../Components/Modal";
+import UserDetails from "./Components/UserDetails";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -140,7 +141,7 @@ class Users extends Component {
           toggle={() => this.ShowDetails(undefined)}
           cancelText="Close"
         >
-          <div>hi</div>
+          <UserDetails Info={this.state.UserInfo}></UserDetails>
         </CustomModal>
 
         <CustomTable
