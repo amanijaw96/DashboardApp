@@ -1,7 +1,9 @@
-import { UserActions } from "../../assets/Constants";
+import { UserActions, ProfileInfo } from "../../assets/Constants";
+
 export default function reducer(
   state = {
-    loggedin: false
+    loggedin: false,
+    ...ProfileInfo
   },
   action
 ) {
@@ -9,13 +11,27 @@ export default function reducer(
     case UserActions["AUTHENTICATE-USER"]: {
       return {
         ...state,
-        loggedin: action.payload.loggedin
+        loggedin: action.payload.loggedin,
+        Name: action.payload.Name,
+        userName: action.payload.userName,
+        Role: action.payload.Role,
+        phone: action.payload.phone
       };
     }
     case UserActions["UNAUTHENTICATE-USER"]: {
       return {
         ...state,
         loggedin: action.payload.loggedin
+      };
+    }
+    case UserActions["UPDATE_PROFILE"]: {
+      return {
+        ...state,
+        loggedin: action.payload.loggedin,
+        Name: action.payload.Name,
+        userName: action.payload.userName,
+        Role: action.payload.Role,
+        phone: action.payload.phone
       };
     }
     default:

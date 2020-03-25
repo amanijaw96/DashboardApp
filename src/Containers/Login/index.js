@@ -33,7 +33,6 @@ class Login extends React.Component {
   handleFormSubmit = e => {
     var isvalidate = document.getElementById("signIn-form").checkValidity();
     e.preventDefault();
-    console.log(isvalidate);
     if (isvalidate) {
       this.handleSignin();
     }

@@ -5,9 +5,17 @@ export const credentials = {
   password: "password"
 };
 
+export const ProfileInfo = {
+  Name: "System Admin",
+  userName: "sysAdmin",
+  Role: "Admin",
+  phone: "+961888965"
+};
+
 export const UserActions = {
   "AUTHENTICATE-USER": "AUTHENTICATE-USER",
-  "UNAUTHENTICATE-USER": "UNAUTHENTICATE-USER"
+  "UNAUTHENTICATE-USER": "UNAUTHENTICATE-USER",
+  UPDATE_PROFILE: "UPDATE_PROFILE"
 };
 
 export const UserDataActions = {

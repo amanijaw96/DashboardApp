@@ -8,6 +8,7 @@ import Dashboard from "./Containers/Dashboard";
 import { connect } from "react-redux";
 import Navbar from "./Components/Navbar";
 import Users from "./Containers/Users";
+import Profile from "./Containers/Profile";
 
 // layout
 const DefaultLayout = ({ children }) => (
@@ -59,6 +60,11 @@ class App extends Component {
             loggedinstatus={this.props.user.loggedin}
             path="/users"
             component={Users}
+          ></AuthenticatedRoute>
+          <AuthenticatedRoute
+            loggedinstatus={this.props.user.loggedin}
+            path="/profile"
+            component={Profile}
           ></AuthenticatedRoute>
           <Route exact path="/" component={Login} />
         </Router>

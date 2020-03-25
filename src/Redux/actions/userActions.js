@@ -1,10 +1,11 @@
-import { UserActions } from "../../assets/Constants";
+import { UserActions, ProfileInfo } from "../../assets/Constants";
 
 export function authUser() {
   return {
     type: UserActions["AUTHENTICATE-USER"],
     payload: {
-      loggedin: true
+      loggedin: true,
+      ...ProfileInfo
     }
   };
 }
@@ -13,6 +14,18 @@ export function unauthUser() {
     type: UserActions["UNAUTHENTICATE-USER"],
     payload: {
       loggedin: false
+    }
+  };
+}
+
+export function UpdateProfile(Name, userName, Role, phone) {
+  return {
+    type: UserActions["UPDATE_PROFILE"],
+    payload: {
+      Name: Name,
+      userName: userName,
+      Role: Role,
+      phone: phone
     }
   };
 }
