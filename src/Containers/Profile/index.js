@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./profile-style.scss";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
+import { UpdateProfile } from "../../Redux/actions/userActions";
 
 const UserValues = {
   Name: "Name",
@@ -18,6 +19,14 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    UpdateProfile: (Name, userName, Role, phone) => {
+      dispatch(UpdateProfile(Name, userName, Role, phone));
+    }
+  };
+};
+
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -26,10 +35,40 @@ class Profile extends React.Component {
     };
   }
 
+  // On Component Mount
   componentDidMount() {
     let ref = this;
     ref.setState({ user: ref.props.user });
   }
+
+  // on Input Change
+  elementChange = (e, element) => {
+    let ref = this;
+    this.setState({
+      user: {
+        ...ref.state.user,
+        [element]: e.target.value
+      }
+    });
+  };
+
+  // save data
+  Save = () => {
+    let ref = this;
+    ref.props.UpdateProfile(
+      ref.state.user.Name,
+      ref.state.user.userName,
+      ref.state.user.Role,
+      ref.state.user.phone
+    );
+    this.setState({ edit: false });
+  };
+
+  // handleClose
+  handleClose = () => {
+    let ref = this;
+    ref.setState({ user: ref.props.user });
+  };
 
   render() {
     return this.state.user ? (
@@ -37,6 +76,7 @@ class Profile extends React.Component {
         className="card mt-3"
         style={{ minHeight: 650, maxWidth: 550 }}
       >
+        {/* header Section */}
         <MDBRow>
           <MDBCol
             md={12}
@@ -59,6 +99,8 @@ class Profile extends React.Component {
             />
           </MDBCol>
         </MDBRow>
+
+        {/* User Info Section */}
         <MDBRow className="mr-2 ml-2" style={{ marginTop: 90 }}>
           <MDBCol
             lg={12}
@@ -67,7 +109,10 @@ class Profile extends React.Component {
           >
             <MDBIcon
               icon={this.state.edit ? "times" : "edit"}
-              onClick={() => this.setState({ edit: !this.state.edit })}
+              onClick={() => {
+                this.setState({ edit: !this.state.edit });
+                this.handleClose();
+              }}
             />
           </MDBCol>
           {Object.keys(UserValues)
@@ -84,11 +129,15 @@ class Profile extends React.Component {
                     outline={this.state.edit}
                     disabled={!this.state.edit}
                     value={this.state.user[element]}
+                    onChange={e => {
+                      this.elementChange(e, element);
+                    }}
                   ></CustomInput>
                 </MDBCol>
               );
             })}
 
+          {/* Role Button Section */}
           <MDBCol lg={6}>
             {this.state.edit === false ? (
               <CustomInput
@@ -105,6 +154,9 @@ class Profile extends React.Component {
                   className="select w-100"
                   value={this.state.user.Role}
                   id="Role"
+                  onChange={e => {
+                    this.elementChange(e, "Role");
+                  }}
                 >
                   <option value="Admin">Admin</option>
                   <option value="User">User</option>
@@ -113,7 +165,7 @@ class Profile extends React.Component {
             )}
           </MDBCol>
         </MDBRow>
-
+        {/* Save Button Section */}
         {this.state.edit ? (
           <MDBRow>
             <MDBCol
@@ -121,12 +173,7 @@ class Profile extends React.Component {
               className="d-flex justify-content-center"
               style={{ cursor: "pointer" }}
             >
-              <CustomButton
-                // onClick={
-
-                // }
-                size="sm"
-              >
+              <CustomButton size="sm" onClick={this.Save}>
                 Save
               </CustomButton>
             </MDBCol>
@@ -137,4 +184,7 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);

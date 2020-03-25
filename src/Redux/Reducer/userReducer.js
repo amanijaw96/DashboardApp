@@ -27,7 +27,6 @@ export default function reducer(
     case UserActions["UPDATE_PROFILE"]: {
       return {
         ...state,
-        loggedin: action.payload.loggedin,
         Name: action.payload.Name,
         userName: action.payload.userName,
         Role: action.payload.Role,
