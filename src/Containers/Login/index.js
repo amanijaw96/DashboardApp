@@ -1,5 +1,6 @@
 import React from "react";
 import CustomInput from "../../Components/CustomInput";
+import CustomButton from "../../Components/CustomButton";
 import { credentials } from "../../assets/Constants";
 import "./Login.scss";
 import { authUser } from "../../Redux/actions/userActions";
@@ -89,13 +90,9 @@ class Login extends React.Component {
           ></CustomInput>
 
           <div className="form-row mt-3 justify-content-center ">
-            <button
-              className="btn btn-primary "
-              onClick={this.handleFormSubmit}
-              type="submit"
-            >
+            <CustomButton onClick={this.handleFormSubmit} type="submit">
               Sign in
-            </button>
+            </CustomButton>
           </div>
         </form>
       </div>

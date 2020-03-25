@@ -5,6 +5,7 @@ import "./profile-style.scss";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { UpdateProfile } from "../../Redux/actions/userActions";
+import Alert from "../../Components/Alert";
 
 const UserValues = {
   Name: "Name",
@@ -54,14 +55,21 @@ class Profile extends React.Component {
 
   // save data
   Save = () => {
-    let ref = this;
-    ref.props.UpdateProfile(
-      ref.state.user.Name,
-      ref.state.user.userName,
-      ref.state.user.Role,
-      ref.state.user.phone
-    );
-    this.setState({ edit: false });
+    let valid = document.getElementById("Profile-form").checkValidity();
+    if (valid) {
+      let ref = this;
+      ref.props.UpdateProfile(
+        ref.state.user.Name,
+        ref.state.user.userName,
+        ref.state.user.Role,
+        ref.state.user.phone
+      );
+      ref.setState({ edit: false }, () => {
+        Alert("success", "Successfully edited");
+      });
+    } else {
+      document.getElementById("Profile-form").classList.add("was-validated");
+    }
   };
 
   // handleClose
@@ -115,55 +123,61 @@ class Profile extends React.Component {
               }}
             />
           </MDBCol>
-          {Object.keys(UserValues)
-            .filter(val => val !== "Role")
-            .map(element => {
-              return (
-                <MDBCol lg={6}>
-                  <CustomInput
-                    type="text"
-                    id={element}
-                    hint={UserValues[element]}
-                    required
-                    label={UserValues[element]}
-                    outline={this.state.edit}
-                    disabled={!this.state.edit}
-                    value={this.state.user[element]}
-                    onChange={e => {
-                      this.elementChange(e, element);
-                    }}
-                  ></CustomInput>
-                </MDBCol>
-              );
-            })}
+          <form
+            id="Profile-form"
+            className="needs-validation d-flex flex-row flex-wrap"
+            noValidate
+          >
+            {Object.keys(UserValues)
+              .filter(val => val !== "Role")
+              .map(element => {
+                return (
+                  <MDBCol lg={6}>
+                    <CustomInput
+                      type="text"
+                      id={element}
+                      hint={UserValues[element]}
+                      required
+                      label={UserValues[element]}
+                      outline={this.state.edit}
+                      disabled={!this.state.edit}
+                      value={this.state.user[element]}
+                      onChange={e => {
+                        this.elementChange(e, element);
+                      }}
+                    ></CustomInput>
+                  </MDBCol>
+                );
+              })}
 
-          {/* Role Button Section */}
-          <MDBCol lg={6}>
-            {this.state.edit === false ? (
-              <CustomInput
-                type="text"
-                id={"Role"}
-                required
-                label={"Role"}
-                disabled={true}
-                value={this.state.user.Role}
-              ></CustomInput>
-            ) : (
-              <div className="md-form">
-                <select
-                  className="select w-100"
+            {/* Role Button Section */}
+            <MDBCol lg={6}>
+              {this.state.edit === false ? (
+                <CustomInput
+                  type="text"
+                  id={"Role"}
+                  required
+                  label={"Role"}
+                  disabled={true}
                   value={this.state.user.Role}
-                  id="Role"
-                  onChange={e => {
-                    this.elementChange(e, "Role");
-                  }}
-                >
-                  <option value="Admin">Admin</option>
-                  <option value="User">User</option>
-                </select>
-              </div>
-            )}
-          </MDBCol>
+                ></CustomInput>
+              ) : (
+                <div className="md-form">
+                  <select
+                    className="select w-100"
+                    value={this.state.user.Role}
+                    id="Role"
+                    onChange={e => {
+                      this.elementChange(e, "Role");
+                    }}
+                  >
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
+              )}
+            </MDBCol>
+          </form>
         </MDBRow>
         {/* Save Button Section */}
         {this.state.edit ? (
