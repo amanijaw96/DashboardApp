@@ -87,7 +87,7 @@ class Profile extends React.Component {
         {/* header Section */}
         <MDBRow>
           <MDBCol
-            md={12}
+            md={"12"}
             className={"d-flex justify-content-center"}
             style={{ backgroundColor: "#4285f4" }}
           >
@@ -100,7 +100,8 @@ class Profile extends React.Component {
                 width: 160,
                 height: 160,
                 position: "absolute",
-                top: -80
+                top: -80,
+                objectFit: "cover"
               }}
               src="https://kvinfo.dk/wp-content/uploads/2013/01/amalal-malki-2.jpg"
               alt=""
@@ -111,7 +112,7 @@ class Profile extends React.Component {
         {/* User Info Section */}
         <MDBRow className="mr-2 ml-2" style={{ marginTop: 90 }}>
           <MDBCol
-            lg={12}
+            lg={"12"}
             className="d-flex justify-content-end"
             style={{ cursor: "pointer" }}
           >
@@ -130,9 +131,9 @@ class Profile extends React.Component {
           >
             {Object.keys(UserValues)
               .filter(val => val !== "Role")
-              .map(element => {
+              .map((element, index) => {
                 return (
-                  <MDBCol lg={6}>
+                  <MDBCol lg={"6"} key={index}>
                     <CustomInput
                       type="text"
                       id={element}
@@ -151,7 +152,7 @@ class Profile extends React.Component {
               })}
 
             {/* Role Button Section */}
-            <MDBCol lg={6}>
+            <MDBCol lg={"6"}>
               {this.state.edit === false ? (
                 <CustomInput
                   type="text"
@@ -183,7 +184,7 @@ class Profile extends React.Component {
         {this.state.edit ? (
           <MDBRow>
             <MDBCol
-              lg={12}
+              lg={"12"}
               className="d-flex justify-content-center"
               style={{ cursor: "pointer" }}
             >

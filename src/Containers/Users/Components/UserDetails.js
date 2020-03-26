@@ -1,5 +1,4 @@
 import React from "react";
-import { height } from "@material-ui/system";
 
 const Userinfo = [
   {
@@ -39,10 +38,14 @@ export default class UserDetails extends React.Component {
         <div className="row justify-content-center ">
           <i className="far fa-user-circle fa-8x indigo-text"></i>
         </div>
+        {/* redner available Userdetails */}
         <div className="row m-2">
-          {Userinfo.map(element => {
+          {Userinfo.map((element, index) => {
             return this.props.Info[element.key] ? (
-              <div className="col-12 d-flex pb-2 justify-content-md-between  justify-content-start mt-4 border-bottom border-light">
+              <div
+                key={index}
+                className="col-12 d-flex pb-2 justify-content-md-between  justify-content-start mt-4 border-bottom border-light"
+              >
                 <strong>{element.name + ":"}</strong>
                 <span className="ml-md-0 ml-1">
                   {this.props.Info[element.key]}

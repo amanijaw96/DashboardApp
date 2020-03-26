@@ -1,5 +1,4 @@
 import React from "react";
-import { MDBBtn } from "mdbreact";
 import CustomButton from "../CustomButton";
 const { Bar } = require("react-chartjs-2");
 
@@ -10,7 +9,7 @@ class BarChart extends React.Component {
       stacked: false
     };
   }
-
+  // graph options
   renderOptions = () => {
     return {
       responsive: true,

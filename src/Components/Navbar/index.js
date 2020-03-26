@@ -9,11 +9,6 @@ import {
   MDBNavLink,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBFormInline,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
   MDBIcon
 } from "mdbreact";
 
@@ -83,7 +78,7 @@ class Navbar extends React.Component {
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem className="white-text mr-3">
-                <MDBNavLink to="/">
+                <MDBNavLink to="">
                   <MDBIcon icon="sign-out-alt" onClick={this.Logout} />
                 </MDBNavLink>
               </MDBNavItem>

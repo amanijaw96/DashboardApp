@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  MDBContainer,
-  MDBBtn,
   MDBModal,
   MDBModalBody,
   MDBModalHeader,
@@ -10,18 +8,17 @@ import {
 import CustomButton from "../CustomButton";
 
 export default class CustomModal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <>
         <MDBModal isOpen={this.props.visible} toggle={this.props.toggle}>
+          {/* Modal Header Section */}
           <MDBModalHeader toggle={this.props.toggle}>
             {this.props.title}
           </MDBModalHeader>
+          {/* Modal Body Section */}
           <MDBModalBody>{this.props.children}</MDBModalBody>
+          {/* Modal Footer Section */}
           {this.props.footer !== undefined && this.props.footer !== false ? (
             <MDBModalFooter>{this.props.footer}</MDBModalFooter>
           ) : this.props.footer === false ? null : (

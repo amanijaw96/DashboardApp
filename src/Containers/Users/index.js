@@ -39,13 +39,11 @@ class Users extends Component {
   // Add new Element
   AddNeweElement = (newData, resolve) => {
     setTimeout(() => {
-      {
-        this.setState({ data: [...this.state.data, newData] }, () => {
-          resolve();
-          this.props.updateUserData(this.state.data);
-          Alert("success", "Added Successfully");
-        });
-      }
+      this.setState({ data: [...this.state.data, newData] }, () => {
+        resolve();
+        this.props.updateUserData(this.state.data);
+        Alert("success", "Added Successfully");
+      });
       resolve();
     }, 1000);
   };

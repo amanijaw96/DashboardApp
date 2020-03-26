@@ -3,10 +3,6 @@ import MaterialTable from "material-table";
 import { rgba } from "polished";
 
 class CustomTable extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="card w-100">

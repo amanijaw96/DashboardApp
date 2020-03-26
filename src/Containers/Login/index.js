@@ -45,7 +45,7 @@ class Login extends React.Component {
     let ref = this;
     if (
       ref.state.email === credentials.email &&
-      ref.state.password === ref.state.password
+      ref.state.password === credentials.password
     ) {
       ref.props.authUser();
       ref.props.history.push("/dashboard");
@@ -77,7 +77,6 @@ class Login extends React.Component {
           ></CustomInput>
 
           <CustomInput
-            type="text"
             id="password"
             hint="Password"
             type="password"

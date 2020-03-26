@@ -1,10 +1,12 @@
 import { rgba } from "polished";
 
+// login credential
 export const credentials = {
   email: "admin@admin.com",
   password: "password"
 };
 
+// logged in user Info
 export const ProfileInfo = {
   Name: "System Admin",
   userName: "sysAdmin",
@@ -12,16 +14,19 @@ export const ProfileInfo = {
   phone: "+961888965"
 };
 
+// User Redux Actions
 export const UserActions = {
   "AUTHENTICATE-USER": "AUTHENTICATE-USER",
   "UNAUTHENTICATE-USER": "UNAUTHENTICATE-USER",
   UPDATE_PROFILE: "UPDATE_PROFILE"
 };
 
+// Available Users Redux action
 export const UserDataActions = {
   UPDATE_USERS: "UPDATE_USERS"
 };
 
+// Bar Chart Data
 export const BarChartData = {
   labels: ["27/2/2018", "27/3/2018", "27/4/2018"],
   datasets: [
@@ -57,7 +62,7 @@ export const BarChartData = {
     }
   ]
 };
-
+// Line chart Data
 export const LineChartData = {
   labels: ["27/2/2018", "27/3/2018", "27/4/2018"],
   datasets: [
@@ -86,6 +91,7 @@ export const LineChartData = {
   ]
 };
 
+// Users table Data
 export const UserData = [
   {
     FirstName: "Mehmet",
